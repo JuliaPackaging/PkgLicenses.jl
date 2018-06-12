@@ -1,9 +1,7 @@
 using PkgLicenses
-@static if VERSION < v"0.7.0-DEV.2005"
-    using Base.Test
-else
-    using Test
-end
+using Base.Test
 
-# write your own tests here
-@test 1 == 2
+# Make sure that we actually have all the licenses we claim to
+for lic in keys(LICENSES)
+    @test isa(readlicense(lic), String)
+end
