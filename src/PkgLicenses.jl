@@ -40,10 +40,10 @@ function license(io::IO, lic::AbstractString="")
         try
             println(io, readlicense(lic))
         catch
-            print_with_color(io, :red, "License $lic is not available.")
+            printstyled(:red, "License $lic is not available.", color=io)
         end
     end
 end
-license(lic::AbstractString="") = license(STDOUT, lic)
+license(lic::AbstractString="") = license(stdout, lic)
 
 end # module
