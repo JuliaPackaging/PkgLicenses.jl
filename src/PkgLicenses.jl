@@ -40,7 +40,7 @@ function license(io::IO, lic::AbstractString="")
         try
             println(io, readlicense(lic))
         catch
-            printstyled(:red, "License $lic is not available.", color=io)
+            printstyled(io, "License $lic is not available.", color=:red)
         end
     end
 end
