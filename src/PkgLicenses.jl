@@ -19,7 +19,7 @@ const LICENSES = Dict(
 "Read license text from specified file and location"
 function readlicense(lic::AbstractString,
                      dir::AbstractString=normpath(dirname(@__FILE__), "..", "res", "licenses"))
-    return readstring(joinpath(dir, lic))
+    return read(joinpath(dir, lic), String)
 end
 
 """
@@ -40,10 +40,10 @@ function license(io::IO, lic::AbstractString="")
         try
             println(io, readlicense(lic))
         catch
-            print_with_color(io, :red, "License $lic is not available.")
+            printstyled(io, "License $lic is not available.", color=:red)
         end
     end
 end
-license(lic::AbstractString="") = license(STDOUT, lic)
+license(lic::AbstractString="") = license(stdout, lic)
 
 end # module
